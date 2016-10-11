@@ -32,8 +32,7 @@ class SiteController extends Controller
     public function actionIndex( $url = false )
     {   
         if($url){
-            $link = Links::getFullLinkByHash($url);
-            $this->redirect($link);
+            $this->redirect(Links::getFullLinkByHash($url));
         }
         //if url empty, render main page
         return $this->render('index');
