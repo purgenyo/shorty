@@ -33,13 +33,7 @@ class SiteController extends Controller
     {   
         if($url){
             $link = Links::getFullLinkByHash($url);
-            if($link){
-                if (!empty($link->full_address)) {
-                    $this->redirect($link->full_address);
-                }
-                Yii::$app->end();
-            }
-            $this->redirect('/');
+            $this->redirect($link);
         }
         //if url empty, render main page
         return $this->render('index');

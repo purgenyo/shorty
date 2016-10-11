@@ -56,6 +56,8 @@ class ShortController extends ActiveController
         unset($actions['create']);
         unset($actions['view']);
         unset($actions['delete']);
+        unset($actions['update']);
+        unset($actions['options']);
 
         return $actions;
     }

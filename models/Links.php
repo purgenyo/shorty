@@ -27,8 +27,9 @@ class Links extends \yii\db\ActiveRecord
      * @param $hash
      * @return array|null|\yii\db\ActiveRecord
      */
-    public static function getFullLinkByHash($hash){
-        return Links::find()->where(['link_hash'=>$hash])->one();
+    public static function getFullLinkByHash($hash, $url_redirect = '/'){
+        $link_model = Links::find()->where(['link_hash'=>$hash])->one();
+        return $link_model ? $link_model->full_address : $url_redirect;
     }
 
     /**
