@@ -1,7 +1,6 @@
 <?php
 
 use yii\db\Migration;
-use yii\db\mysql\Schema;
 
 class m161010_152918_init extends Migration
 {
@@ -15,7 +14,7 @@ class m161010_152918_init extends Migration
         // create links table
         $this->createTable('{{%links}}', [
             'link_id' => $this->primaryKey(),
-            'full_address' => $this->string()->notNull()->defaultValue(''),
+            'full_address' => $this->text(),
             'link_hash' => $this->string(32)->notNull()->defaultValue(''),
         ], $tableOptions);
     }

@@ -27,17 +27,17 @@ class SiteController extends Controller
      */
     public function actionIndex( $url = false )
     {   
-        $request = Yii::$app->request;
-
         if($url){
             $link = Links::getFullLinkByHash($url);
             if($link){
-                $this->redirect($link->full_address);
+                if (!empty($link->full_address)) {
+                    $this->redirect($link->full_address);
+                }
                 Yii::$app->end();
             }
             $this->redirect('/');
         }
-
+        //if url empty, render main page
         return $this->render('index');
     }
 }

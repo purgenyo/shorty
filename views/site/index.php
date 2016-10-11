@@ -10,6 +10,7 @@
     <div class="ui warning message message-error hidden"></div>
     <div class="ui message fluid message-success message-success-template hidden"></div>
 
+    <!--content blocks-->
     <div class="error-content"></div>
     <div class="success-content"></div>
 
