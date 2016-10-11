@@ -52,7 +52,7 @@ class Links extends \yii\db\ActiveRecord
         return [
             [['full_address'], 'required', 'message'=>'{attribute} не может быть пустой!'],
             [['full_address'], 'filter', 'filter' => 'trim'],
-            [['full_address'], 'string', 'max' => 2048],
+            [['full_address'], 'string', 'max' => 2048, 'min'=>3],
             [['link_hash'], 'string', 'max' => 32],
         ];
     }
