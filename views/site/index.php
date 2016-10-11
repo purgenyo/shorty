@@ -1,4 +1,4 @@
-<? $this->title = 'Генерация короткого URL'; ?>
+<?php $this->title = 'Генерация короткого URL'; ?>
 <h1 style="padding-top: 50px" class="ui center aligned header"><?=$this->title?></h1>
 <div class="ui container">
     <div class="ui fluid massive action input">

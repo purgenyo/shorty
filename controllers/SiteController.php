@@ -6,6 +6,10 @@ use app\models\Links;
 use Yii;
 use yii\web\Controller;
 
+/**
+ * Class SiteController
+ * @package app\controllers
+ */
 class SiteController extends Controller
 {
     /**

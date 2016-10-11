@@ -2,10 +2,19 @@
 
 namespace app\components;
 
+/**
+ * 
+ * Class PseudoCrypt
+ * @package app\components
+ */
 class PseudoCrypt {
- 
-    /* Key: Next prime greater than 62 ^ n / 1.618033988749894848 */
-    /* Value: modular multiplicative inverse */
+
+    /**
+     * Key: Next prime greater than 62 ^ n / 1.618033988749894848
+     * Value: modular multiplicative inverse
+     *
+     * @var array
+     */
     private static $golden_primes = [
         '1'                  => '1',
         '41'                 => '59',
@@ -19,9 +28,14 @@ class PseudoCrypt {
         '8366379594239857'   => '7275288500431249',
         '518715534842869223' => '280042546585394647'
     ];
- 
-    /* Ascii :                    0  9,         A  Z,         a  z     */
-    /* $chars = array_merge(range(48,57), range(65,90), range(97,122)) */
+
+    /**
+     *
+     * Ascii :                    0  9,         A  Z,         a  z
+     * $chars = array_merge(range(48,57), range(65,90), range(97,122))
+     *
+     * @var array
+     */
     private static $chars62 = array(
         0=>48,1=>49,2=>50,3=>51,4=>52,5=>53,6=>54,7=>55,8=>56,9=>57,10=>65,
         11=>66,12=>67,13=>68,14=>69,15=>70,16=>71,17=>72,18=>73,19=>74,20=>75,
@@ -31,7 +45,11 @@ class PseudoCrypt {
         50=>111,51=>112,52=>113,53=>114,54=>115,55=>116,56=>117,57=>118,58=>119,
         59=>120,60=>121,61=>122
     );
- 
+
+    /**
+     * @param $int
+     * @return string
+     */
     public static function base62($int) {
         $key = "";
         while(bccomp($int, 0) > 0) {
@@ -41,7 +59,12 @@ class PseudoCrypt {
         }
         return strrev($key);
     }
- 
+
+    /**
+     * @param $num
+     * @param int $len
+     * @return string
+     */
     public static function hash($num, $len = 5) {
         $ceil = bcpow(62, $len);
         $primes = array_keys(self::$golden_primes);
@@ -49,14 +72,5 @@ class PseudoCrypt {
         $dec = bcmod(bcmul($num, $prime), $ceil);
         $hash = self::base62($dec);
         return str_pad($hash, $len, "0", STR_PAD_LEFT);
-    }
- 
-    public static function unbase62($key) {
-        $int = 0;
-        foreach(str_split(strrev($key)) as $i => $char) {
-            $dec = array_search(ord($char), self::$chars62);
-            $int = bcadd(bcmul($dec, bcpow(62, $i)), $int);
-        }
-        return $int;
     }
 }
